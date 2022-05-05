@@ -1,0 +1,44 @@
+variables:
+  REGISTRY: "registry.gitlab.com/pagofx/emoney/infrastructure"
+  MAIN_BRANCH: 'feature/PFXI-2140-backstage-pre'
+  REGION: 'eu-west-1'
+  CLUSTER: 'poti1aireksemoneypmts001'
+
+backstage_build:
+  image: "registry.gitlab.com/pagofx/emoney/infrastructure/ci_builder_aws:latest"
+  stage: build
+  tags:
+    - aws-pre-builder
+  rules:
+    - if: '$CI_COMMIT_TAG'
+      when: never
+    - if: $CI_COMMIT_BRANCH =~ /^(release\/|hotfix\/|master)/
+      when: never
+    - if: '$CI_COMMIT_BRANCH == $MAIN_BRANCH'
+    - when: never
+  before_script:
+    - date -u +"DATE/TIME "%Y/%m/%d" "%H:%M:%S" UTC"
+    - apt update
+    - apt install -y npm
+    - curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash 
+    - apt install -y jq
+    - npm install --global yarn
+
+  script:
+    - export NVM_DIR="$HOME/.nvm"
+    - '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"'
+    - nvm install 16.13.0
+    - cd app
+    - export POSTGRES_USER="" && export POSTGRES_PASSWORD="" && export GITLAB_TOKEN="" && export LB="" && export JIRA_TOKEN=""
+    - yarn install --frozen-lockfile
+    - yarn tsc
+    - yarn build
+    #yarn install && yarn tsc && yarn build
+    - yarn version --patch --no-git-tag-version
+    - VERSION=$(cat package.json | jq -r '.version')
+    - docker login -u $CI_DEPLOY_USER -p $CI_DEPLOY_PASSWORD $REGISTRY
+    - docker image build . -f packages/backend/Dockerfile --tag ${REGISTRY}/backstage:$VERSION
+    - docker push ${REGISTRY}/backstage:$VERSION
+    - aws eks --region $REGION update-kubeconfig --name $CLUSTER
+    - 'sed -e "s#<VERSION>#${VERSION}#g" ../backstage.yaml'
+    - kubectl rollout restart deployment backstage --namespace=backstage

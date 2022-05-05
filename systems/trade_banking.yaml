@@ -1,0 +1,8 @@
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: trade_banking
+  description: bian-business-area Trade Banking
+spec:
+  owner: API-Platform
+  domain: operations_and_execution

@@ -1,0 +1,35 @@
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: eMoney-QA
+  description: eMoney QA
+spec:
+  type: team
+  profile:
+    email: QA@pagonxt.com
+    picture: https://avatars.dicebear.com/api/identicon/infra-team@example.com.svg?background=%23fff&margin=25
+  parent: pagonxt
+  children: []
+---
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: beatriz.burgos
+spec:
+  profile:
+    displayName: Beatriz Burgos Garcia Siana
+    email: siana.burgos@pagonxt.com
+    picture: https://avatars.dicebear.com/api/avataaars/guest@example.com.svg?background=%23fff
+  memberOf: [eMoney-QA]
+---
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: adrian.noya
+spec:
+  profile:
+    displayName: Adrian Alejandro Noya Rampersad
+    email: adrian.noya@pagonxt.com
+    picture: https://avatars.dicebear.com/api/avataaars/guest@example.com.svg?background=%23fff
+  memberOf: [eMoney-QA]
+---

@@ -1,0 +1,8 @@
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: operational_services
+  description: bian-business-area Operational Services
+spec:
+  owner: API-Platform
+  domain: operations_and_execution

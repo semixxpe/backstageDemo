@@ -1,0 +1,9 @@
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: account_management
+  description: bian-business-area Account Management
+spec:
+  owner: API-Platform
+  domain: operations_and_execution
+

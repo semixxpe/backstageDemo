@@ -1,0 +1,8 @@
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: corporate_financig_and_advisory_services
+  description: bian-business-area Corporate Financing and Advisory Services
+spec:
+  owner: API-Platform
+  domain: operations_and_executions

@@ -1,0 +1,134 @@
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: API-Platform
+  description: API Platform
+spec:
+  type: team
+  profile:
+    email: gtsapiplatformit@gruposantander.com
+    picture: https://avatars.dicebear.com/api/identicon/infra-team@example.com.svg?background=%23fff&margin=25
+  parent: pagonxt
+  children: []
+---
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: jose.perezrevilla
+spec:
+  profile:
+    displayName: Jose Felix Perez Revilla
+    email: jose.perezrevilla@pagonxt.com
+    picture: https://avatars.dicebear.com/api/avataaars/guest@example.com.svg?background=%23fff
+  memberOf: [API-Platform, API_TECNICA]
+---
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: alberto.cabrero
+spec:
+  profile:
+    displayName: Alberto Cabrero
+    email: alberto.cabrero@servexternos.gruposantander.com
+    picture: https://avatars.dicebear.com/api/avataaars/guest@example.com.svg?background=%23fff
+  memberOf: [API-Platform]
+---
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: oriol.brau
+spec:
+  profile:
+    displayName: Oriol Brau Castel
+    email: oriol.brau@servexternos.gruposantander.com
+    picture: https://avatars.dicebear.com/api/avataaars/guest@example.com.svg?background=%23fff
+  memberOf: [API-Platform]
+---
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: d.calvo
+spec:
+  profile:
+    displayName: David Calvo del Amo
+    email: d.calvo@servexternos.gruposantander.com
+    picture: https://avatars.dicebear.com/api/avataaars/guest@example.com.svg?background=%23fff
+  memberOf: [API-Platform]
+---
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: sancho.garcia
+spec:
+  profile:
+    displayName: Sancho Garcia-Tenorio
+    email: sancho.garcia@servexternos.pagonxt.com
+    picture: https://avatars.dicebear.com/api/avataaars/guest@example.com.svg?background=%23fff
+  memberOf: [API-Platform]
+---
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: daniel.martinez
+spec:
+  profile:
+    displayName: Daniel Martinez
+    email: daniel.martinez@servexternos.pagonxt.com
+    picture: https://avatars.dicebear.com/api/avataaars/guest@example.com.svg?background=%23fff
+  memberOf: [API-Platform]
+---
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: cristian.vicente
+spec:
+  profile:
+    displayName: Cristian Vicente
+    email: cristian.vicente@servexternos.pagonxt.com
+    picture: https://avatars.dicebear.com/api/avataaars/guest@example.com.svg?background=%23fff
+  memberOf: [API-Platform]
+---
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: sergio.tarancon
+spec:
+  profile:
+    displayName: Sergio Tarancon
+    email: sergio.tarancon@servexternos.pagonxt.com
+    picture: https://avatars.dicebear.com/api/avataaars/guest@example.com.svg?background=%23fff
+  memberOf: [API-Platform]
+---
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: santiago.serradilla
+spec:
+  profile:
+    displayName: Santiago Serradilla
+    email: santiago.serradilla@servexternos.pagonxt.com
+    picture: https://avatars.dicebear.com/api/avataaars/guest@example.com.svg?background=%23fff
+  memberOf: [API-Platform]
+---
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: jose.ruizruiz
+spec:
+  profile:
+    displayName: Jose Miguel Ruiz
+    email: jose.ruizruiz@servexternos.gruposantander.com
+    picture: https://avatars.dicebear.com/api/avataaars/guest@example.com.svg?background=%23fff
+  memberOf: [API-Platform]
+---
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: ruben.muriana
+spec:
+  profile:
+    displayName: Ruben Murriana
+    email: ruben.muriana@servexternos.pagonxt.com
+    picture: https://avatars.dicebear.com/api/avataaars/guest@example.com.svg?background=%23fff
+  memberOf: [API-Platform]
+---

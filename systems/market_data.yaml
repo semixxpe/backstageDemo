@@ -1,0 +1,8 @@
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: market_data
+  description: bian-business-area Market Data
+spec:
+  owner: API-Platform
+  domain: reference_data

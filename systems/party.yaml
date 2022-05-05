@@ -1,0 +1,8 @@
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: party
+  description: bian-business-area Party
+spec:
+  owner: API-Platform
+  domain: reference_data

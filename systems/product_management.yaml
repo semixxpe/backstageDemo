@@ -1,0 +1,8 @@
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: product_management
+  description: bian-business-area Product Management
+spec:
+  owner: API-Platform
+  domain: reference_data

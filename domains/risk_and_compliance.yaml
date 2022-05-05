@@ -1,0 +1,7 @@
+apiVersion: backstage.io/v1alpha1
+kind: Domain
+metadata:
+  name: risk_and_compliance
+  description: bian-business-area Risk and Compliance
+spec:
+  owner: API-Platform

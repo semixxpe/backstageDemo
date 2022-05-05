@@ -1,0 +1,8 @@
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: loans_and_deposits
+  description: bian-business-area Loans and Deposits
+spec:
+  owner: API-Platform
+  domain: operations_and_execution

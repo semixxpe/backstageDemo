@@ -1,0 +1,8 @@
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: document_management_and_archive
+  description: bian-business-area Document Management and Archive
+spec:
+  owner: API-Platform
+  domain: business_support

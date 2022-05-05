@@ -1,0 +1,8 @@
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: business_direction
+  description: bian-business-area Business Direction
+spec:
+  owner: API-Platform
+  domain: business_support

@@ -1,0 +1,18 @@
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: accounting_confirming
+  description: "GTS incoco management: Global trade accounting API. Check the API changelog at: https://confluence.ci.gsnet.corp/display/GTS/API+Changelog"
+  tags: 
+    - api
+  annotations: 
+    # The annotation is deprecated, we use placeholders (see below)instead, remove it later.
+    backstage.io/definition-at-location: 'url:https://raw.githubusercontent.com/APIs-guru/openapi-directory/master/APIs/spotify.com/v1/swagger.yaml'
+spec:
+  type: swagger
+  lifecycle: production
+  system: account_management
+  owner: Ivan Esteban Barbero
+  definition:
+   $text: https://gitlab.com/pagofx/emoney/apis-gts/-/blob/develop/openapi.yaml  
+   # $text: https://github.alm.europe.cloudcenter.corp/sgt-globaltradeservices/api-ac\counting-confirming/blob/initial_structure/specs/accounting-confirming_1.\4.0.yaml

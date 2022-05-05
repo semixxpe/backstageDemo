@@ -1,0 +1,23 @@
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: eMoney
+  description: eMoney
+spec:
+  type: team
+  profile:
+    email: email@email.com
+    picture: https://avatars.dicebear.com/api/identicon/infra-team@example.com.svg?background=%23fff&margin=25
+  parent: pagonxt
+  children: []
+---
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: oscar.sanchiz
+spec:
+  profile:
+    displayName: Oscar Sanchiz
+    email: oscar.sanchiz@pagonxt.com
+    picture: https://avatars.dicebear.com/api/avataaars/guest@example.com.svg?background=%23fff
+  memberOf: [eMoney-coreDatos,eMoney-TL, eMoney]

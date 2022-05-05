@@ -1,0 +1,8 @@
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: servicing
+  description: bian-business-area Servicing
+spec:
+  owner: API-Platform
+  domain: sales_and_service

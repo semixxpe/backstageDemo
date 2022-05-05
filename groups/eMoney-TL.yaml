@@ -1,0 +1,45 @@
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: eMoney-coreDatos
+  description: eMoney-coreDatos
+spec:
+  type: team
+  profile:
+    email: email@email.com
+    picture: https://avatars.dicebear.com/api/identicon/infra-team@example.com.svg?background=%23fff&margin=25
+  parent: pagonxt
+  children: []
+---
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: oscar.sanchiz
+spec:
+  profile:
+    displayName: Oscar Sanchiz
+    email: oscar.sanchiz@pagonxt.com
+    picture: https://avatars.dicebear.com/api/avataaars/guest@example.com.svg?background=%23fff
+  memberOf: [eMoney-coreDatos,eMoney-TL]
+---
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: angel.gavira
+spec:
+  profile:
+    displayName: Angel Gavira
+    email: angel.gavira@grupoavalon.es
+    picture: https://avatars.dicebear.com/api/avataaars/guest@example.com.svg?background=%23fff
+  memberOf: [eMoney-coreDatos]
+---
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: gonzalo.diaz
+spec:
+  profile:
+    displayName: Gonzalo Diaz Tejeiro Rodriguez
+    email: gonzalo.diaz@servexternos.gruposantander.com
+    picture: https://avatars.dicebear.com/api/avataaars/guest@example.com.svg?background=%23fff
+  memberOf: [eMoney-coreDatos]

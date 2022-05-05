@@ -1,0 +1,8 @@
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: consumer_services
+  description: bian-business-area Costumer Services
+spec:
+  owner: API-Platform
+  domain: operations_and_execution

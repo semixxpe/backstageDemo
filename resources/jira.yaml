@@ -1,0 +1,21 @@
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: Jira
+  description: Jira
+  links:
+    - url: https://pagonxtconsumer.atlassian.net/browse/PFXI
+      title: Infra PFXI
+      icon: dashboard
+    - url: https://pagonxtconsumer.atlassian.net/browse/PFXB
+      title: Backend PFXB
+      icon: dashboard
+    - url: https://pagonxtconsumer.atlassian.net/browse/PFXQ
+      title: QA PFXQ
+      icon: dashboard
+    - url: https://pagonxtconsumer.atlassian.net/jira/projects
+      title: All projects
+      icon: dashboard
+spec:
+  type: jira
+  owner: eMoney-Backend

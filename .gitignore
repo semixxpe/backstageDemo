@@ -1,0 +1,14 @@
+.terraform
+terraform.tfstate*
+.env
+.vscode
+node_modules
+.DS_Store
+.history/
+.idea
+.session.token
+alive.txt
+*.csr
+junit.xml
+plan.txt
+kubeconfig*

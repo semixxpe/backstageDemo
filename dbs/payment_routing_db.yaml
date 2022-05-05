@@ -1,0 +1,9 @@
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: payment-routing-db
+  description: payment-routing-db
+spec:
+  type: database
+  owner: eMoney-Backend
+  system: swift

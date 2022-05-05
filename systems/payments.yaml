@@ -1,0 +1,8 @@
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: payments
+  description: bian-business-area Payments
+spec:
+  owner: API-Platform
+  domain: operations_and_execution

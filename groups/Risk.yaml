@@ -1,0 +1,23 @@
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: Risk
+  description: Risk
+spec:
+  type: team
+  profile:
+    email: email@email.com
+    picture: https://avatars.dicebear.com/api/identicon/infra-team@example.com.svg?background=%23fff&margin=25
+  parent: pagonxt
+  children: []
+---
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: josean.relano
+spec:
+  profile:
+    displayName: Relaño Gallardo Jose Angel
+    email: josean.relano@servexternos.gruposantander.com
+    picture: https://avatars.dicebear.com/api/avataaars/guest@example.com.svg?background=%23fff
+  memberOf: [Risk, Tarifario]

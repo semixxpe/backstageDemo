@@ -1,0 +1,59 @@
+# kubernetes/backstage.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backstage
+  namespace: backstage
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backstage
+  template:
+    metadata:
+      labels:
+        app: backstage
+    spec:
+      imagePullSecrets:
+        - name: regsecret-backstage
+      containers:
+        - name: backstage
+          # VERSION = 1.0.4, 1.3.0
+          image: registry.gitlab.com/pagofx/emoney/infrastructure/backstage:<VERSION>
+          imagePullPolicy: Always
+          ports:
+            - name: http
+              containerPort: 7000
+          env:
+            - name: POSTGRES_PORT
+              value: "5432"
+            - name: POSTGRES_HOST
+              value: postgres
+            # REVISAR SI HA CAMBIADO
+            - name: LB
+              # value: "https://vpce-0df5d49434b7676f6-s8n8xvli.vpce-svc-0bc3069708459c7d5.eu-west-1.vpce.amazonaws.com"
+              #value: "https://k8s-backstag-backstag-a9a4e2ca81-b50dce797810a6df.elb.eu-west-1.amazonaws.com"
+              value: "https://www.pre.backstage.pagonxt.corp"
+            - name: GLOBAL_AGENT_HTTP_PROXY
+              value: "http://proxy.sig.umbrella.com:80"
+            - name: GLOBAL_AGENT_NO_PROXY
+              value: "107.106.12.0/22,10.100.0.0/16,localhost,127.0.0.1,169.254.169.254,.amazonaws.com"
+            - name: GLOBAL_AGENT_HTTPS_PROXY
+              value: "http://proxy.sig.umbrella.com:443"
+          envFrom:
+            - secretRef:
+                name: postgres-secrets
+            - secretRef:
+                name: backstage-secrets
+# Uncomment if health checks are enabled in your app:
+# https://backstage.io/docs/plugins/observability#health-checks
+#          readinessProbe:
+#            httpGet:
+#              port: 7000
+#              path: /healthcheck
+#          livenessProbe:
+#            httpGet:
+#              port: 7000
+#              path: /healthcheck
+
+

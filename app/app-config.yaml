@@ -1,0 +1,315 @@
+app:
+  title: Scaffolded Backstage App
+  baseUrl: http://localhost:3000
+
+organization:
+  name: PagoNxt Trade
+
+backend:
+  baseUrl: ${LB}
+  listen:
+    port: 7000
+  csp:
+    img-src:
+      # "'self'" and 'data' are from the backstage default but must be set since img-src is overriden
+      - "'self'"
+      - 'data:'
+      # Allow your Jira instance for @roadiehq/backstage-plugin-jira
+      - 'https://pagonxtconsumer.atlassian.net'
+      - 'https://img.shields.io'
+    connect-src: ["'self'", 'http:', 'https:']
+    # Content-Security-Policy directives follow the Helmet format: https://helmetjs.github.io/#reference
+    # Default Helmet Content-Security-Policy values can be removed by setting the key to false
+  cors:
+    origin: http://localhost:3000
+    methods: [GET, POST, PUT, DELETE]
+    credentials: true
+  # config options: https://node-postgres.com/api/client
+  database:
+    client: pg
+    connection:
+      host: ${POSTGRES_HOST}
+      port: ${POSTGRES_PORT}
+      user: ${POSTGRES_USER}
+      password: ${POSTGRES_PASSWORD}
+      # https://node-postgres.com/features/ssl
+      # ssl: require # see https://www.postgresql.org/docs/current/libpq-ssl.html Table 33.1. SSL Mode Descriptions (e.g. require)
+      #   ca: # if you have a CA file and want to verify it you can uncomment this section
+      #     $file: <file-path>/ca/server.crt
+  cache:
+    store: memory
+  # workingDirectory: /tmp # Use this to configure a working directory for the scaffolder, defaults to the OS temp-dir
+
+integrations:
+  gitlab:
+    - host: gitlab.com
+      token: ${GITLAB_TOKEN}
+
+  github:
+    - host: github.com
+      token: ${GITHUB_TOKEN}
+    ### Example for how to add your GitHub Enterprise instance using the API:
+    # - host: ghe.example.net
+    #   apiBaseUrl: https://ghe.example.net/api/v3
+    #   token: ${GHE_TOKEN}
+
+proxy:
+  '/gitlabci':
+    target: 'https://gitlab.com/api/v4'
+    allowedMethods: ['GET']
+    headers:
+      PRIVATE-TOKEN: ${GITLAB_TOKEN}
+
+  '/test':
+    target: 'https://example.com'
+    changeOrigin: true
+
+  '/jira/api':
+    target: 'https://pagonxtconsumer.atlassian.net'
+    headers:
+      Authorization:
+        $env: JIRA_TOKEN
+      Accept: 'application/json'
+      Content-Type: 'application/json'
+      X-Atlassian-Token: 'nocheck'
+      User-Agent: "MY-UA-STRING"
+# Reference documentation http://backstage.io/docs/features/techdocs/configuration
+# Note: After experimenting with basic setup, use CI/CD to generate docs
+# and an external cloud storage when deploying TechDocs for production use-case.
+# https://backstage.io/docs/features/techdocs/how-to-guides#how-to-migrate-from-techdocs-basic-to-recommended-deployment-approach
+techdocs:
+  builder: 'local' # Alternatives - 'external'
+  generator:
+    runIn: 'local' # Alternatives - 'local'
+  publisher:
+    type: 'local' # Alternatives - 'googleGcs' or 'awsS3'. Read documentation for using alternatives.
+
+auth:
+  # see https://backstage.io/docs/auth/ to learn about auth providers
+  providers: {}
+
+scaffolder:
+  github:
+    token: ${GITHUB_TOKEN}
+    visibility: public # or 'internal' or 'private'
+
+catalog:
+  rules:
+    - allow: [Component, System, API, Group, User, Resource, Location, Domain, Template]
+  locations:
+    # # Backstage example components
+    # - type: url
+    #   target: https://github.com/backstage/backstage/blob/master/packages/catalog-model/examples/all-components.yaml
+
+    # # Backstage example systems
+    # - type: url
+    #   target: https://github.com/backstage/backstage/blob/master/packages/catalog-model/examples/all-systems.yaml
+
+    # # Backstage example APIs
+    # - type: url
+    #   target: https://github.com/backstage/backstage/blob/master/packages/catalog-model/examples/all-apis.yaml
+
+    # # Backstage example resources
+    # - type: url
+    #   target: https://github.com/backstage/backstage/blob/master/packages/catalog-model/examples/all-resources.yaml
+
+    # # Backstage example organization groups
+    # - type: url
+    #   target: https://github.com/backstage/backstage/blob/master/packages/catalog-model/examples/acme/org.yaml
+
+    # Backstage example templates
+    - type: url
+      target: https://github.com/backstage/software-templates/blob/main/scaffolder-templates/react-ssr-template/template.yaml
+      rules:
+        - allow: [Template]
+    - type: url
+      target: https://github.com/backstage/software-templates/blob/main/scaffolder-templates/springboot-grpc-template/template.yaml
+      rules:
+        - allow: [Template]
+    - type: url
+      target: https://github.com/spotify/cookiecutter-golang/blob/master/template.yaml
+      rules:
+        - allow: [Template]
+    - type: url
+      target: https://github.com/backstage/software-templates/blob/main/scaffolder-templates/docs-template/template.yaml
+      rules:
+        - allow: [Template]
+    # Components
+    - type: url
+      target: https://gitlab.com/pagofx/microservices/swift-mt/-/blob/backstage/backstage/catalog-info.yaml
+      rules:
+        - allow: [Template]
+    - type: url
+      target: https://gitlab.com/pagofx/microservices/payment-routing-engine/-/blob/backstage/backstage/catalog-info.yaml
+    - type: url
+      target: https://gitlab.com/pagofx/tooling/apigenerator/-/blob/backstage/backstage/catalog-info.yaml
+    # APIs
+    - type: url
+      target: https://gitlab.com/pagofx/pagofx/sandbox/payments-api/-/blob/backstage/backstage/catalog-info.yaml
+    - type: url
+      target: https://gitlab.com/pagofx/microservices/payment-routing-engine/-/blob/backstage/backstage/paymentsApi.yaml
+    - type: url
+      target: https://gitlab.com/pagofx/microservices/swift-mt/-/blob/backstage/backstage/swift-mt-api.yaml
+    - type: url
+      target: https://gitlab.com/pagofx/emoney/apis-gts/-/blob/backstage/payments-tracker-catalog-info.yaml
+    - type: url
+      target: https://gitlab.com/pagofx/emoney/apis-gts/-/blob/backstage/banks-and-branches-catalog-info.yaml
+    - type: url
+      target: https://gitlab.com/pagofx/emoney/apis-gts/-/blob/backstage/contracts-catalog-info.yaml
+    - type: url
+      target: https://gitlab.com/pagofx/emoney/apis-gts/-/blob/backstage/contracts-branch-catalog-info.yaml
+    - type: url
+      target: https://gitlab.com/pagofx/emoney/apis-gts/-/blob/backstage/customers-obd-catalog-info.yaml
+    - type: url
+      target: https://gitlab.com/pagofx/emoney/apis-gts/-/blob/backstage/nexus-balance-catalog-info.yaml
+    - type: url
+      target: https://gitlab.com/pagofx/emoney/apis-gts/-/blob/backstage/pain002-management-catalog-info.yaml
+    - type: url
+      target: https://gitlab.com/pagofx/emoney/apis-gts/-/blob/backstage/product-converter-catalog-info.yaml
+    - type: url
+      target: https://gitlab.com/pagofx/emoney/apis-gts/-/blob/backstage/real-time-balance-catalog-info.yaml
+    - type: url
+      target: https://gitlab.com/pagofx/emoney/apis-gts/-/blob/backstage/real-time-balancev2-catalog-info.yaml
+    - type: url
+      target: https://github.com/pagonxt/backstage/blob/develop/apis/accounting_confirming_batch.yaml
+    - type: url
+      target: https://github.com/pagonxt/backstage/blob/develop/apis/accounting_confirming.yaml
+    - type: url
+      target: https://github.com/pagonxt/backstage/blob/develop/apis/accounting_trade.yaml
+    - type: url
+      target: https://github.com/pagonxt/backstage/blob/develop/apis/credit_lines.yaml
+    # Groups
+    - type: url
+      target: https://github.com/pagonxt/backstage/blob/develop/groups/eMoney_Infra.yaml
+    - type: url
+      target: https://github.com/pagonxt/backstage/blob/develop/groups/eMoney_Backend.yaml
+    - type: url
+      target: https://github.com/pagonxt/backstage/blob/develop/groups/API_Platform.yaml
+    - type: url
+      target: https://github.com/pagonxt/backstage/blob/develop/groups/eMoney_QA.yaml
+    - type: url
+      target: https://github.com/pagonxt/backstage/blob/develop/groups/eMoney_Accounts.yaml
+    - type: url
+      target: https://github.com/pagonxt/backstage/blob/develop/groups/API_Platform.yaml
+    - type: url
+      target: https://github.com/pagonxt/backstage/blob/develop/groups/eMoney_Backend.yaml
+    - type: url
+      target: https://github.com/pagonxt/backstage/blob/develop/groups/API_TECNICA.yaml
+    - type: url
+      target: https://github.com/pagonxt/backstage/blob/develop/groups/Conpend.yaml
+    - type: url
+      target: https://github.com/pagonxt/backstage/blob/develop/groups/Emi_Accounts.yaml
+    - type: url
+      target: https://github.com/pagonxt/backstage/blob/develop/groups/Fraude.yaml
+    - type: url
+      target: https://github.com/pagonxt/backstage/blob/develop/groups/GTS_Core1.yaml
+    - type: url
+      target: https://github.com/pagonxt/backstage/blob/develop/groups/GTS_Core2.yaml
+    - type: url
+      target: https://github.com/pagonxt/backstage/blob/develop/groups/GTS_Core3.yaml
+    - type: url
+      target: https://github.com/pagonxt/backstage/blob/develop/groups/GTS_Nexus.yaml
+    - type: url
+      target: https://github.com/pagonxt/backstage/blob/develop/groups/Incoco.yaml
+    - type: url
+      target: https://github.com/pagonxt/backstage/blob/develop/groups/Journal.yaml
+    - type: url
+      target: https://github.com/pagonxt/backstage/blob/develop/groups/Mercury.yaml
+    - type: url
+      target: https://github.com/pagonxt/backstage/blob/develop/groups/OTFX.yaml
+    - type: url
+      target: https://github.com/pagonxt/backstage/blob/develop/groups/Pega.yaml
+    - type: url
+      target: https://github.com/pagonxt/backstage/blob/develop/groups/Risk.yaml
+    - type: url
+      target: https://github.com/pagonxt/backstage/blob/develop/groups/SSEE1.yaml
+    - type: url
+      target: https://github.com/pagonxt/backstage/blob/develop/groups/SSEE2.yaml
+    - type: url
+      target: https://github.com/pagonxt/backstage/blob/develop/groups/TFX.yaml
+    - type: url
+      target: https://github.com/pagonxt/backstage/blob/develop/groups/Tarifario.yaml
+    - type: url
+      target: https://github.com/pagonxt/backstage/blob/develop/groups/VAM.yaml
+    - type: url
+      target: https://github.com/pagonxt/backstage/blob/develop/groups/eMoney-TL.yaml
+    - type: url
+      target: https://github.com/pagonxt/backstage/blob/develop/groups/eMoney.yaml
+    - type: url
+      target: https://github.com/pagonxt/backstage/blob/develop/groups/eMoney_Accounts.yaml
+    - type: url
+      target: https://github.com/pagonxt/backstage/blob/develop/groups/eMoney_Backend.yaml
+    - type: url
+      target: https://github.com/pagonxt/backstage/blob/develop/groups/eMoney_Infra.yaml
+    - type: url
+      target: https://github.com/pagonxt/backstage/blob/develop/groups/eMoney_QA.yaml
+    # Systems
+    - type: url
+      target: https://github.com/pagonxt/backstage/blob/develop/systems/swift.yaml
+    - type: url
+      target: https://github.com/pagonxt/backstage/blob/develop/systems/gts_apis.yaml
+    - type: url
+      target: https://github.com/pagonxt/backstage/blob/develop/systems/account_management.yaml
+    - type: url
+      target: https://github.com/pagonxt/backstage/blob/dev_groups/systems/business_analysis.yaml
+    - type: url
+      target: https://github.com/pagonxt/backstage/blob/dev_groups/systems/business_command_and_control.yaml
+    - type: url
+      target: https://github.com/pagonxt/backstage/blob/dev_groups/systems/business_direction.yaml
+    - type: url
+      target: https://github.com/pagonxt/backstage/blob/dev_groups/systems/consumer_services.yaml
+    - type: url
+      target: https://github.com/pagonxt/backstage/blob/dev_groups/systems/corporate_financing_and_advisory_services.yaml
+    - type: url
+      target: https://github.com/pagonxt/backstage/blob/dev_groups/systems/customer_management.yaml
+    - type: url
+      target: https://github.com/pagonxt/backstage/blob/dev_groups/systems/document_management_and_archive.yaml
+    - type: url
+      target: https://github.com/pagonxt/backstage/blob/dev_groups/systems/finance.yaml
+    - type: url
+      target: https://github.com/pagonxt/backstage/blob/dev_groups/systems/it_management.yaml
+    - type: url
+      target: https://github.com/pagonxt/backstage/blob/dev_groups/systems/loans_and_deposits.yaml
+    - type: url
+      target: https://github.com/pagonxt/backstage/blob/dev_groups/systems/market_data.yaml
+    - type: url
+      target: https://github.com/pagonxt/backstage/blob/dev_groups/systems/market_operations.yaml
+    - type: url
+      target: https://github.com/pagonxt/backstage/blob/dev_groups/systems/operational_services.yaml
+    - type: url
+      target: https://github.com/pagonxt/backstage/blob/dev_groups/systems/party.yaml
+    - type: url
+      target: https://github.com/pagonxt/backstage/blob/dev_groups/systems/payments.yaml
+    - type: url
+      target: https://github.com/pagonxt/backstage/blob/dev_groups/systems/product_management.yaml
+    - type: url
+      target: https://github.com/pagonxt/backstage/blob/dev_groups/systems/regulations_and_compliance.yaml
+    - type: url
+      target: https://github.com/pagonxt/backstage/blob/dev_groups/systems/sales.yaml
+    - type: url
+      target: https://github.com/pagonxt/backstage/blob/dev_groups/systems/servicing.yaml
+    - type: url
+      target: https://github.com/pagonxt/backstage/blob/dev_groups/systems/trade_banking.yaml
+    # dbs
+    - type: url
+      target: https://github.com/pagonxt/backstage/blob/develop/dbs/swift_mt_db.yaml
+    - type: url
+      target: https://github.com/pagonxt/backstage/blob/develop/dbs/payment_routing_db.yaml
+    - type: url
+      target: https://github.com/pagonxt/backstage/blob/develop/dbs/swift_message_handler.yaml
+    # Jira
+    - type: url
+      target: https://github.com/pagonxt/backstage/blob/develop/resources/jira.yaml
+    # Domain
+    - type: url
+      target: https://github.com/pagonxt/backstage/blob/develop/domains/emoney.yaml
+    - type: url
+      target: https://github.com/pagonxt/backstage/blob/develop/domains/operations_and_execution.yaml
+    - type: url
+      target: https://github.com/pagonxt/backstage/blob/dev_groups/domains/business_support.yaml
+    - type: url
+      target: https://github.com/pagonxt/backstage/blob/dev_groups/domains/reference_data.yaml
+    - type: url
+      target: https://github.com/pagonxt/backstage/blob/dev_groups/domains/risk_and_compliance.yaml
+    - type: url
+      target: https://github.com/pagonxt/backstage/blob/dev_groups/domains/sales_and_service.yaml

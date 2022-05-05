@@ -1,0 +1,8 @@
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: it_management
+  description: bian-business-area IT Management
+spec:
+  owner: API-Platform
+  domain: business_support

@@ -1,0 +1,100 @@
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: eMoney-Infra
+  description: Infrastructure Team
+spec:
+  type: team
+  profile:
+    email: eMoney-Infra@pagonxt.com
+    picture: https://avatars.dicebear.com/api/identicon/eMoney-Infra@example.com.svg?background=%23fff&margin=25
+  parent: pagonxt
+  children: []
+---
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: alberto.suarez
+spec:
+  profile:
+    displayName: Alberto Suarez
+    email: alberto.suarez@servexternos.pagonxt.com
+    picture: https://avatars.dicebear.com/api/avataaars/guest@example.com.svg?background=%23fff
+  memberOf: [eMoney-Infra]
+---
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: samuel.alvarez
+spec:
+  profile:
+    displayName: Samuel Alvarez
+    email: samuel.alvarez@servexternos.pagonxt.com
+    picture: https://avatars.dicebear.com/api/avataaars/guest@example.com.svg?background=%23fff
+  memberOf: [eMoney-Infra]
+---
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: jinle.xia
+spec:
+  profile:
+    displayName: Jinle Xia
+    email: jinle.xia@servexternos.pagonxt.com
+    picture: https://avatars.dicebear.com/api/avataaars/breanna-davison@example.com.svg?background=%23fff
+  memberOf: [eMoney-Infra]
+---
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: david.rodriguez
+spec:
+  profile:
+    displayName: David Rodriguez
+    email: david.rodriguezgonzalez@pagonxt.com
+    picture: https://avatars.dicebear.com/api/avataaars/janelle-dawe@example.com.svg?background=%23fff
+  memberOf: [eMoney-Infra]
+---
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: hugo.lastras
+spec:
+  profile:
+    displayName: Hugo Lastras
+    email: hugo.lastras@servexternos.pagonxt.com
+    picture: https://avatars.dicebear.com/api/avataaars/nigel-manning@example.com.svg?background=%23fff
+  memberOf: [eMoney-Infra]
+---
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: alberto.parras
+spec:
+  profile:
+    displayName: Alberto Parras
+    email: alberto.parras@servexternos.pagonxt.com
+    picture: https://avatars.dicebear.com/api/avataaars/guest@example.com.svg?background=%23fff
+  memberOf: [eMoney-Infra]
+---
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: david.signoret
+spec:
+  profile:
+    displayName: David Signoret
+    email: david.signoret@pagonxt.com
+    picture: https://avatars.dicebear.com/api/avataaars/janelle-dawe@example.com.svg?background=%23fff
+  memberOf: [eMoney-Infra]
+---
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: isabel.serrano
+spec:
+  profile:
+    displayName: Isabel Serrano
+    email: isabel.serrano@pagonxt.com
+    picture: https://avatars.dicebear.com/api/avataaars/janelle-dawe@example.com.svg?background=%23fff
+  memberOf: [eMoney-Infra]

@@ -1,0 +1,8 @@
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: Swift
+  description: Swift system
+spec:
+  owner: eMoney-Backend
+  domain: emoney

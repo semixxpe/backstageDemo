@@ -1,0 +1,18 @@
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: credit_lines
+  description: Services in Credit Line API to allow operations related to Credit Lines such as creation, modifications, refresh and delete
+  tags:
+    - api   
+  annotations:
+    # The annotation is deprecated, we use placeholders (see below) instead, remove it later.
+    backstage.io/definition-at-location: 'url:https://raw.githubusercontent.com/APIs-guru/openapi-directory/master/APIs/spotify.com/v1/swagger.yaml'
+spec:
+  type: swagger
+  lifecycle: production
+  system: account_management
+  owner: Tarifario
+  definition:
+   $text: https://gitlab.com/pagofx/emoney/apis-gts/-/blob/develop/openapi.yaml
+   # $text: https://github.alm.europe.cloudcenter.corp/sgt-globaltradeservices/api-credit-lines/blob/initial_structure/specs/credit-line-1.0.6.yaml
